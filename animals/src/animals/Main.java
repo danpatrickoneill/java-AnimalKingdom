@@ -15,6 +15,20 @@ public class Main
 		}
 	}
 
+	public static ArrayList<Animal> returnFiltered(ArrayList<Animal> animals, CheckAnimal tester)
+	{
+		ArrayList<Animal> filteredAnimals = new ArrayList<Animal>();
+
+		for (Animal a : animals)
+		{
+			if (tester.test(a))
+			{
+				filteredAnimals.add(a);
+			}
+		}
+		return filteredAnimals;
+	}
+
 	public static void main(String[] args)
 	{
 		// Instantiating mammals
@@ -75,15 +89,18 @@ public class Main
 		System.out.println("*** LUNG BREATHERS OF 1758 ***");
 		showFiltered(kingdom, a -> a.breathe() == "Lungs" && a.yearDiscovered == 1758);
 
-		System.out.println("*** EGG-LAYING LUNG BREATHERS ***");
+		System.out.println("*** EGG-LAYING LUNG BREATHERS (AKA BIRDS) ***");
 		showFiltered(kingdom, a -> a.breathe() == "Lungs" && a.reproduce() == "Eggs");
 
-		System.out.println("*** ANIMAL CLASS OF 1758 ***");
-		showFiltered(kingdom, a -> a.yearDiscovered == 1758);
+		System.out.println("*** ANIMAL CLASS OF 1758 SORTED ALPHABETICALLY ***");
+		ArrayList<Animal> animalsOf58 = returnFiltered(kingdom, a -> a.yearDiscovered == 1758);
+		animalsOf58.sort((a1, a2) -> a1.name.compareToIgnoreCase(a2.name));
+		animalsOf58.forEach(a -> System.out.println(a.toString()));
 
 		System.out.println("*** MAMMALS SORTED ALPHABETICALLY ***");
-		kingdom.sort((a1, a2) -> a1.name.compareToIgnoreCase(a2.name));
-		showFiltered(kingdom, a -> a instanceof Mammal);
+		ArrayList<Animal> mammals = returnFiltered(kingdom, a -> a instanceof Mammal);
+		mammals.sort((a1, a2) -> a1.name.compareToIgnoreCase(a2.name));
+		mammals.forEach(a -> System.out.println(a.toString()));
 
 	}
 }
