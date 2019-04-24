@@ -1,11 +1,11 @@
 package animals;
 
-public class Mammal extends Animal
+public class Fish extends Animal
 {
 	// fields
 
 	// constructor
-	public Mammal(String name, int yearDiscovered)
+	public Fish(String name, int yearDiscovered)
 	{
 		super(name, yearDiscovered);
 	}
@@ -15,18 +15,18 @@ public class Mammal extends Animal
 	@Override
 	public String move()
 	{
-		return "Walk";
+		return "Swim";
 	}
 
 	@Override
 	public String breathe()
 	{
-		return "Lungs";
+		return "Gills";
 	}
 
 	@Override
 	public String reproduce()
 	{
-		return "Live young";
+		return "Eggs";
 	}
 }

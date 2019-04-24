@@ -3,10 +3,10 @@ package animals;
 public abstract class Animal
 {
 	// fields
-	int maxId = 0;
-	int id;
-	String name;
-	int yearDiscovered;
+	private static int maxId = 0;
+	public int id;
+	public String name;
+	public int yearDiscovered;
 
 	// constructor
 	public Animal(String name, int yearDiscovered)
@@ -22,4 +22,11 @@ public abstract class Animal
 	public abstract String move();
 	public abstract String breathe();
 	public abstract String reproduce();
+
+	@Override
+	public String toString()
+	{
+		return id + ": " + name + ", discovered " + yearDiscovered + "\n"
+		+ move() + ", " + breathe() + ", " + reproduce() + "\n";
+	}
 }
